@@ -1,3 +1,32 @@
 [gd_scene format=3 uid="uid://1aav7kyrkf56"]
 
+[ext_resource type="Script" uid="uid://c6g3hly625ppd" path="res://TSCN/node_2d.gd" id="1_6eumi"]
+[ext_resource type="Texture2D" uid="uid://43l4ea6ie5bv" path="res://Textures/Player_Character.png" id="2_tt41i"]
+[ext_resource type="Script" uid="uid://d1nnfe0i3jnqa" path="res://TSCN/coin.gd" id="3_fl2l6"]
+[ext_resource type="Script" uid="uid://cnjlp6d868s7a" path="res://TSCN/collisions.gd" id="4_tt41i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2g38p"]
+
 [node name="Node2D" type="Node2D" unique_id=2126435714]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=572240402]
+material = SubResource("CanvasItemMaterial_2g38p")
+use_parent_material = true
+scale = Vector2(55, 55)
+
+[node name="PlayerCharacter" type="Sprite2D" parent="." unique_id=1132982987]
+position = Vector2(554, 355)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_tt41i")
+script = ExtResource("1_6eumi")
+
+[node name="Coin" type="Sprite2D" parent="." unique_id=2094969476]
+position = Vector2(498, 303)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_tt41i")
+script = ExtResource("3_fl2l6")
+
+[node name="CollisionsMgmt" type="Node2D" parent="." unique_id=1577027580 node_paths=PackedStringArray("playerNode", "coinNode")]
+script = ExtResource("4_tt41i")
+playerNode = NodePath("../PlayerCharacter")
+coinNode = NodePath("../Coin")
