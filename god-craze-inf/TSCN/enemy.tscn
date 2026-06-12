@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b00rw4bsyutuh"]
+
+[ext_resource type="Texture2D" uid="uid://ca6e03axkr86l" path="res://Textures/Enemy_Character.png" id="1_c3fdh"]
+
+[node name="Enemy" type="Node2D" unique_id=902810709]
+modulate = Color(1, 1, 1, 0.5019608)
+
+[node name="EnemyChar" type="Sprite2D" parent="." unique_id=64350057]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_c3fdh")

@@ -1,11 +1,15 @@
 extends Sprite2D
 
-var invisibleCoinPosX : float = -999999.0
-var invisibleCoinPosY : float = -999999.0
-var coinPosX : float = -999999.0
-var coinPosY : float = -999999.0
+@export var invisibleCoinPosX : float = -999999.0
+@export var invisibleCoinPosY : float = -999999.0
+@export var coinPosX : float = -999999.0
+@export var coinPosY : float = -999999.0
 @export var spawnCoin : bool = true
 @export var coinTouched : bool = false
+@export var coinCount : int = 0
+@export var lastCoinCount : int = 0
+
+#@export var coinEnemyAdded : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,13 +19,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 
 	if spawnCoin == true:
-		coinPosX = randi_range(250, 750)
-		coinPosY = randi_range(150, 450)
+		coinPosX = randi_range(240, 960)
+		coinPosY = randi_range(80, 560)
 		spawnCoin = false
 		coinTouched = false
 
 	if spawnCoin == false:
 		if coinTouched == true:
+			coinCount += 1
 			coinPosX = invisibleCoinPosX
 			coinPosY = invisibleCoinPosY
 			spawnCoin = true
@@ -29,5 +34,6 @@ func _process(_delta: float) -> void:
 	position.x = coinPosX
 	position.y = coinPosY
 
-	print("Coin Pos")
-	print(position)
+func _coin_reset() -> void:
+	lastCoinCount = coinCount
+	coinCount = 0

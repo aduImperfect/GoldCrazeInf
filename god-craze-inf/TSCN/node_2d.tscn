@@ -4,18 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://43l4ea6ie5bv" path="res://Textures/Player_Character.png" id="2_tt41i"]
 [ext_resource type="Script" uid="uid://d1nnfe0i3jnqa" path="res://TSCN/coin.gd" id="3_fl2l6"]
 [ext_resource type="Script" uid="uid://cnjlp6d868s7a" path="res://TSCN/collisions.gd" id="4_tt41i"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2g38p"]
+[ext_resource type="Script" uid="uid://bf2y7w5gco41r" path="res://TSCN/enemy_collection.gd" id="5_njj43"]
+[ext_resource type="Script" uid="uid://quwab5sj8bds" path="res://TSCN/wall_collection.gd" id="6_cmywb"]
+[ext_resource type="Script" uid="uid://4q5d0sdwfnbr" path="res://TSCN/text_edit.gd" id="7_w5lpw"]
 
 [node name="Node2D" type="Node2D" unique_id=2126435714]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=572240402]
-material = SubResource("CanvasItemMaterial_2g38p")
-use_parent_material = true
-scale = Vector2(55, 55)
-
 [node name="PlayerCharacter" type="Sprite2D" parent="." unique_id=1132982987]
-position = Vector2(554, 355)
+position = Vector2(550, 350)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_tt41i")
 script = ExtResource("1_6eumi")
@@ -26,7 +22,26 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("2_tt41i")
 script = ExtResource("3_fl2l6")
 
-[node name="CollisionsMgmt" type="Node2D" parent="." unique_id=1577027580 node_paths=PackedStringArray("playerNode", "coinNode")]
+[node name="CollisionsMgmt" type="Node2D" parent="." unique_id=1577027580 node_paths=PackedStringArray("playerNode", "coinNode", "wallCollectionNode", "enemyCollectionNode")]
 script = ExtResource("4_tt41i")
 playerNode = NodePath("../PlayerCharacter")
+coinNode = NodePath("../Coin")
+wallCollectionNode = NodePath("../WallCollection")
+enemyCollectionNode = NodePath("../EnemyCollection")
+
+[node name="EnemyCollection" type="Node2D" parent="." unique_id=76517932 node_paths=PackedStringArray("coinNode")]
+script = ExtResource("5_njj43")
+coinNode = NodePath("../Coin")
+
+[node name="WallCollection" type="Node2D" parent="." unique_id=1939903580]
+script = ExtResource("6_cmywb")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=365904564 node_paths=PackedStringArray("coinNode")]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0.068360776, 0.9883395, 0.041374143, 1)
+theme_override_font_sizes/font_size = 50
+text = "  0"
+script = ExtResource("7_w5lpw")
 coinNode = NodePath("../Coin")
