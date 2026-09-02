@@ -19,8 +19,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 
 	if spawnCoin == true:
-		coinPosX = randi_range(240, 960)
-		coinPosY = randi_range(80, 560)
+		coinPosX = randi_range(400, 820)
+		coinPosY = randi_range(160, 480)
 		spawnCoin = false
 		coinTouched = false
 
